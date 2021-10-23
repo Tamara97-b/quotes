@@ -16,34 +16,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
     class AppTest {
-        @Test public void testRandomNum(){
 
-            Gson gson = new Gson();
+        @Test public void getFromJson(){
+        String path ="./src/test/resources/recentquoites.json";
+            String expectedAuther= "Marilyn Monroe";
+            ArrayList<Quotes> testResult = App.getQuotesFromFile(path);
+            assertNotNull(testResult);
+            System.out.println(testResult.get(0).getAuthor());
+            System.out.println(expectedAuther);
+            assertEquals(expectedAuther,testResult.get(0).getAuthor());
 
-            FileReader fr= null;
-            try {
-                fr = new FileReader("./src/test/resources/recentquoites.json");
-                BufferedReader br=new BufferedReader(fr);
-
-                ArrayList<HashMap> json = gson.fromJson(br, ArrayList.class);
-
-                br.close();
-                fr.close();
-
-                int Random = (int)(Math.random()*json.size());
-                for(int i=1 ; i<10000;i++) {
-                    assertTrue(Random >= 0 && Random < json.size());
-                }
-                System.out.println("random value is between the 0 and ArrayList size");
-
-
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            BufferedReader br=new BufferedReader(fr);
         }
 
+        @Test public void sendGetRequest(){
+            String url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en";
+            assertNotNull(App.sendGetRequest(url));
+
+
+        }
     }
