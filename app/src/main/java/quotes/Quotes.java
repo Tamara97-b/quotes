@@ -6,14 +6,14 @@ import java.util.ArrayList;
 public class Quotes {
 
     private ArrayList<String> tags ;
-    private String auther;
+    private String author;
     private String likes;
     private String text;
 
 
-    public Quotes(ArrayList<String> tags, String auther, String likes, String text) {
+    public Quotes(ArrayList<String> tags, String author, String likes, String text) {
         this.tags = tags;
-        this.auther = auther;
+        this.author = author;
         this.likes = likes;
         this.text = text;
     }
@@ -26,12 +26,12 @@ public class Quotes {
         this.tags = tags;
     }
 
-    public String getAuther() {
-        return auther;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuther(String auther) {
-        this.auther = auther;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getLikes() {
@@ -52,12 +52,8 @@ public class Quotes {
 
     @Override
     public String toString() {
-        return "Quotes{" +
-                "tags=" + tags +
-                ", auther='" + auther + '\'' +
-                ", likes='" + likes + '\'' +
-                ", text='" + text + '\'' +
-                '}';
+        return "{author: "+ getAuthor()+" ," +
+                " text: "+ getText()+ "}";
     }
 
 
